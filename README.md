@@ -1,4 +1,4 @@
-SERPremeSEO Brand Loader
+# SERPremeSEO Brand Loader
 
 A lightweight, framework-agnostic JavaScript utility for applying brand colors, fonts, and theme variables to embedded widgets such as the SERPremeSEO Calculator.
 
@@ -6,49 +6,51 @@ This script is designed to work across WordPress, Webflow, Wix, Squarespace, Sho
 
 It supports three branding sources, in order of priority:
 
-Manually defined global overrides (window.HC_BRAND_OVERRIDES)
-
-Auto-detected brand colors from site buttons
-
-Default fallback palette included in the script
+1. Manually defined global overrides (`window.HC_BRAND_OVERRIDES`)
+2. Auto-detected brand colors from site buttons
+3. Default fallback palette included in the script
 
 The result is a consistent, client-matched UI without manual CSS adjustments.
 
-Features
+---
 
-Automatic brand color loading from the host website
+## Features
 
-Optional manual branding via JavaScript overrides
+-   Automatic brand color loading from the host website
+-   Optional manual branding via JavaScript overrides
+-   Safe fallback palette for predictable rendering
+-   Lightweight and dependency-free
+-   CDN friendly
+-   Works with web components (SEO Calculator) or standalone widgets
 
-Safe fallback palette for predictable rendering
+---
 
-Lightweight and dependency-free
-
-CDN friendly
-
-Works with web components (SEO Calculator) or standalone widgets
-
-Installation and Usage
+## Installation and Usage
 
 You may include the script via CDN or self-host it.
 
-CDN Example (jsDelivr)
+### CDN Example (jsDelivr)
 
-Replace USERNAME and REPO with your GitHub values:
+Replace `USERNAME` and `REPO` with your GitHub values:
 
+```html
 <script src="https://cdn.jsdelivr.net/gh/USERNAME/serpremeseo-brand-loader/dist/brand-loader.min.js"></script>
+```
 
-Place the script before your calculator or widget so CSS variables are available when it loads.
+Place the script **before** your calculator or widget so CSS variables are available when it loads.
 
-How Branding Works
+---
 
-The loader sets CSS variables on :root, making them accessible:
+## How Branding Works
 
-Across the entire document
+The loader sets CSS variables on `:root`, making them accessible:
 
-Inside Shadow DOM for components that read these variables
+-   Across the entire document
+-   Inside Shadow DOM for components that read these variables
 
-Variables Applied
+### Variables Applied
+
+```
 --brand-top
 --brand-bottom
 
@@ -67,96 +69,127 @@ Variables Applied
 --bg-dark
 --panel-dark
 --text-dark
+```
 
-Manual Branding Override
+---
 
-You can explicitly specify brand values by defining:
+## Manual Branding Override
 
+Developers or agencies may define explicit brand settings before loading the script:
+
+```html
 <script>
-window.HC_BRAND_OVERRIDES = {
-    brandTop: "#013740",
-    brandBottom: "#2B5C64",
+    window.HC_BRAND_OVERRIDES = {
+        brandTop: "#013740",
+        brandBottom: "#2B5C64",
 
-    chartOnPage: "#D8724E",
-    chartTech: "#DFA07F",
-    chartOffPage: "#CCE2A2",
+        chartOnPage: "#D8724E",
+        chartTech: "#DFA07F",
+        chartOffPage: "#CCE2A2",
 
-    fontBody: "'Lato', sans-serif",
-    fontHeader: "'DM Serif Display', serif",
-    fontSub: "'Montserrat', sans-serif",
+        fontBody: "'Lato', sans-serif",
+        fontHeader: "'DM Serif Display', serif",
+        fontSub: "'Montserrat', sans-serif",
 
-    bgLight: "#F9F9F9",
-    panelLight: "#FFFFFF",
-    textLight: "#013740",
+        bgLight: "#F9F9F9",
+        panelLight: "#FFFFFF",
+        textLight: "#013740",
 
-    bgDark: "#013740",
-    panelDark: "#2B5C64",
-    textDark: "#F9F9F9"
-};
+        bgDark: "#013740",
+        panelDark: "#2B5C64",
+        textDark: "#F9F9F9",
+    };
 </script>
 
-<script src="brand-loader.min.js"></script>
+<script src="dist/brand-loader.min.js"></script>
+```
 
-The loader will merge these values with defaults.
+---
 
-Auto-Detection
+## Auto-Detection Behavior
 
 If no overrides are provided, the script scans common button classes:
 
+```
 button
 .btn
 a.button
 .elementor-button
-.wp-block-button\_\_link
+.wp-block-button__link
+```
 
 The first non-transparent background color found becomes:
 
+```
 --brand-top
 --brand-bottom
+```
 
-This provides basic theme matching for sites without documented branding.
+This enables basic theme matching on sites with inconsistent or undocumented branding.
 
-Development
-Project Structure
+---
+
+## Development
+
+### Project Structure
+
+```
 /
 ├── src/
-│ └── brand-loader.js
+│   └── brand-loader.js
 │
 ├── dist/
-│ ├── brand-loader.js
-│ └── brand-loader.min.js
+│   ├── brand-loader.js
+│   └── brand-loader.min.js
 │
 ├── build.js
 ├── package.json
 ├── README.md
 └── LICENSE
+```
 
-Build Instructions
+### Building the Project
 
 Install dependencies:
 
+```sh
 npm install
+```
 
-Build the script:
+Build both production files:
 
+```sh
 npm run build
+```
 
 Outputs:
 
+```
 dist/brand-loader.js
 dist/brand-loader.min.js
+```
 
-Versioning and CDN Release
+---
 
-To version the project and make releases available via jsDelivr:
+## Versioning and CDN Releases
 
+Use Git tags to publish versioned CDN builds.
+
+Tag a release:
+
+```sh
 git tag v1.0.0
 git push origin v1.0.0
+```
 
-jsDelivr will allow users to load:
+A versioned CDN URL becomes:
 
+```
 https://cdn.jsdelivr.net/gh/USERNAME/serpremeseo-brand-loader@v1.0.0/dist/brand-loader.min.js
+```
 
-License
+---
+
+## License
 
 MIT License. See the LICENSE file for details.

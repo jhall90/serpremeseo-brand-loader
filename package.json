@@ -1,0 +1,21 @@
+{
+    "name": "serpremeseo-brand-loader",
+    "version": "1.0.0",
+    "description": "Universal brand stylesheet loader for SEO calculator components",
+    "main": "dist/brand-loader.js",
+    "type": "commonjs",
+    "scripts": {
+        "build": "node build.js"
+    },
+    "keywords": [
+        "branding",
+        "seo",
+        "loader",
+        "css-vars"
+    ],
+    "author": "SERPreme SEO",
+    "license": "MIT",
+    "devDependencies": {
+        "esbuild": "^0.27.1"
+    }
+}
